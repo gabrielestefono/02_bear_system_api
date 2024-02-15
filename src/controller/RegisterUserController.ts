@@ -15,12 +15,16 @@ class RegisterUserController{
 			if (!Array.isArray(data)) {
                 data = [];
             }
-			data.push({
-                nome: req.body.nome,
-                sobreNome: req.body.sobreNome,
-                email: req.body.email,
-                senha: hash
-            });
+			if(data.some((user) => user.email === req.body.email)) {
+				return res.status(400).json({ message: 'Email já cadastrado' });
+			}else{
+				data.push({
+					nome: req.body.nome,
+					sobreNome: req.body.sobreNome,
+					email: req.body.email,
+					senha: hash
+				});
+			}
 			fs.writeFileSync('users.json', JSON.stringify(data));
 			res.status(200).json({ message: 'Usuário Registrado' });
 		} catch (error) {
