@@ -8,8 +8,8 @@ class RegisterUserController{
 			const salt = bcrypt.genSaltSync(10);
 			const hash = bcrypt.hashSync(req.body.senha, salt);
 			let data: any[] = [];
-            if (fs.existsSync('users.json')) {
-                const rawData = fs.readFileSync('users.json', 'utf-8');
+            if (fs.existsSync('./src/config/users.json')) {
+                const rawData = fs.readFileSync('./src/config/users.json', 'utf-8');
                 data = JSON.parse(rawData);
             }
 			if (!Array.isArray(data)) {
@@ -25,7 +25,7 @@ class RegisterUserController{
 					senha: hash
 				});
 			}
-			fs.writeFileSync('users.json', JSON.stringify(data));
+			fs.writeFileSync('./src/config/users.json', JSON.stringify(data));
 			res.status(200).json({ message: 'Usuário Registrado' });
 		} catch (error) {
 			console.error(error);

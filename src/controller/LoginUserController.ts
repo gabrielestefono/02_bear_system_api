@@ -7,7 +7,7 @@ class LoginUserController{
 		try {
 			const email = req.body.email;
 			const senha = req.body.senha;
-			const rawData = fs.readFileSync('users.json', 'utf-8');
+			const rawData = fs.readFileSync('./src/config/users.json', 'utf-8');
 			const data = JSON.parse(rawData);
 			const user = data.find((user: { email: string; senha: string; }) => user.email === email);
 			if (!user) {
