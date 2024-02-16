@@ -1,4 +1,3 @@
-* config -  Salvar os dados dentro da pasta config em um json
 * controller - Separar a lógica dentro do controller entre controller e service
 * middleware - Criar um middleware para verificar se o usuário está autenticado
 * middleware - Fazer a geração, salvamento e leitura de um token nos middlewares para manter a autenticação ativa
